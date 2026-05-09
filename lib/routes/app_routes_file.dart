@@ -3,6 +3,7 @@ import 'app_routes.dart';
 import 'authBindings.dart';
 
 // Import screens
+import '../screens/baseScreen/splashScreen/splashScreen.dart';
 import '../screens/baseScreen/authScreen/sign_in/sign_in_screen.dart';
 import '../screens/baseScreen/authScreen/sign_up/sign_up_screen.dart';
 import '../screens/baseScreen/authScreen/forgotPasswordScreen/forgorPasswordScreen.dart';
@@ -21,6 +22,10 @@ import '../screens/profileScreen/termsAndconditions/termsAndconditionsScreen.dar
 
 class AppRoutesFile {
   static final List<GetPage> routes = [
+    GetPage(
+      name: AppRoutes.splashScreen,
+      page: () => const SplashScreen(),
+    ),
     GetPage(
       name: AppRoutes.signInScreen,
       page: () => const SignInScreen(),
