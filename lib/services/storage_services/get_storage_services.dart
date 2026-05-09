@@ -4,7 +4,8 @@ import 'package:personal_template/utils/error_log.dart';
 
 class StorageServices {
   StorageServices._privateConstructor();
-  static final StorageServices _instance = StorageServices._privateConstructor();
+  static final StorageServices _instance =
+      StorageServices._privateConstructor();
   static StorageServices get instance => _instance;
 
   ////////////// storage initial
@@ -90,7 +91,7 @@ class StorageServices {
   ///logout
   Future<void> storageClear() async {
     try {
-      await box.erase();  // ✅ All storage cleared
+      await box.erase(); // ✅ All storage cleared
       await box.save();
       errorLog('Logout', 'Storage cleared successfully');
     } catch (e) {

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
 import 'package:personal_template/constant/app_api_end_point.dart';
 import 'package:personal_template/routes/app_routes.dart';
 import 'package:personal_template/services/storage_services/get_storage_services.dart';
@@ -46,7 +47,7 @@ class AppApi {
           try {
             if (error.response?.statusCode == 401) {
               storageServices.storageClear();
-              Get.offAllNamed(AppRoutes.signInScreen); // Use signInScreen instead of loginScreen since we used that in AppRoutes
+              // Get.offAllNamed(AppRoutes.loginScreen);
               return handler.next(error);
             }
           } catch (e) {
@@ -59,7 +60,15 @@ class AppApi {
         },
       ),
       if (kDebugMode)
-        PrettyDioLogger(requestHeader: true, request: true, compact: true, error: true, requestBody: true, responseHeader: true, responseBody: true),
+        PrettyDioLogger(
+          requestHeader: true,
+          request: true,
+          compact: true,
+          error: true,
+          requestBody: true,
+          responseHeader: true,
+          responseBody: true,
+        ),
     });
   }
   Dio get sendRequest => _dio;

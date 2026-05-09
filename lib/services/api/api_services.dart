@@ -13,9 +13,18 @@ class ApiServices {
   //////////  object
   final _api = AppApi();
   final _storageServices = StorageServices.instance;
-  Future<dynamic> putServices({required String url, dynamic body, int statusCode = 200, Map<String, dynamic>? query}) async {
+  Future<dynamic> putServices({
+    required String url,
+    dynamic body,
+    int statusCode = 200,
+    Map<String, dynamic>? query,
+  }) async {
     try {
-      final response = await _api.sendRequest.put(url, data: body, queryParameters: query);
+      final response = await _api.sendRequest.put(
+        url,
+        data: body,
+        queryParameters: query,
+      );
       if (response.statusCode == statusCode) {
         return response.data;
       } else {
@@ -49,13 +58,23 @@ class ApiServices {
     }
   }
 
+  // ============== this is api post service class ==================================================================
 
-// ============== this is api post service class ==================================================================
-
-  Future<dynamic> postServices({required String url, dynamic body, int statusCodeStart = 200, int statusCodeEnd = 299, Map<String, dynamic>? queryParameters}) async {
+  Future<dynamic> postServices({
+    required String url,
+    dynamic body,
+    int statusCodeStart = 200,
+    int statusCodeEnd = 299,
+    Map<String, dynamic>? queryParameters,
+  }) async {
     try {
-      final dynamic response = await AppApi().sendRequest.post(url, data: body, queryParameters: queryParameters);
-      if (response.statusCode >= statusCodeStart && response.statusCode <= statusCodeEnd) {
+      final dynamic response = await AppApi().sendRequest.post(
+        url,
+        data: body,
+        queryParameters: queryParameters,
+      );
+      if (response.statusCode >= statusCodeStart &&
+          response.statusCode <= statusCodeEnd) {
         return response.data;
       } else {
         return null;
@@ -87,10 +106,20 @@ class ApiServices {
       return null;
     }
   }
-// ============== this is api get service class ==================================================================
-  Future<dynamic> getServices(String url, {int statusCode = 200, Map<String, dynamic>? queryParameters, dynamic body}) async {
+
+  // ============== this is api get service class ==================================================================
+  Future<dynamic> getServices(
+    String url, {
+    int statusCode = 200,
+    Map<String, dynamic>? queryParameters,
+    dynamic body,
+  }) async {
     try {
-      final response = await _api.sendRequest.get(url, queryParameters: queryParameters, data: body);
+      final response = await _api.sendRequest.get(
+        url,
+        queryParameters: queryParameters,
+        data: body,
+      );
       if (response.statusCode == statusCode) {
         return response.data;
       } else {
@@ -123,11 +152,22 @@ class ApiServices {
       return null;
     }
   }
-// ============== this is api patch service class ==================================================================
+  // ============== this is api patch service class ==================================================================
 
-  Future<dynamic> patchServices({required String url, Object? body, int statusCode = 200, Map<String, dynamic>? query, Options? options}) async {
+  Future<dynamic> patchServices({
+    required String url,
+    Object? body,
+    int statusCode = 200,
+    Map<String, dynamic>? query,
+    Options? options,
+  }) async {
     try {
-      final response = await _api.sendRequest.patch(url, data: body, queryParameters: query, options: options);
+      final response = await _api.sendRequest.patch(
+        url,
+        data: body,
+        queryParameters: query,
+        options: options,
+      );
 
       if (response.statusCode == statusCode) {
         return response.data;
@@ -162,10 +202,22 @@ class ApiServices {
       return null;
     }
   }
-// ============== this is api delete service class ==================================================================
-  Future<dynamic> deleteServices({required String url, Object? body, int statusCode = 200, Map<String, dynamic>? query, Options? options}) async {
+
+  // ============== this is api delete service class ==================================================================
+  Future<dynamic> deleteServices({
+    required String url,
+    Object? body,
+    int statusCode = 200,
+    Map<String, dynamic>? query,
+    Options? options,
+  }) async {
     try {
-      final response = await _api.sendRequest.delete(url, data: body, queryParameters: query, options: options);
+      final response = await _api.sendRequest.delete(
+        url,
+        data: body,
+        queryParameters: query,
+        options: options,
+      );
 
       if (response.statusCode == statusCode) {
         return response.data;
@@ -200,11 +252,8 @@ class ApiServices {
       return null;
     }
   }
-
-
 
   // ============== this is api multipart service class ==================================================================
-
 
   Future<dynamic> multipartServices({
     required String url,
@@ -226,14 +275,19 @@ class ApiServices {
       }
 
       // Add files to FormData
-      if (filePath != null && fileKey != null && filePath.length == fileKey.length) {
+      if (filePath != null &&
+          fileKey != null &&
+          filePath.length == fileKey.length) {
         for (int i = 0; i < filePath.length; i++) {
           File file = File(filePath[i]);
           if (file.existsSync()) {
             formData.files.add(
               MapEntry(
                 fileKey[i],
-                await MultipartFile.fromFile(file.path, filename: file.path.split('/').last),
+                await MultipartFile.fromFile(
+                  file.path,
+                  filename: file.path.split('/').last,
+                ),
               ),
             );
           }
@@ -241,9 +295,13 @@ class ApiServices {
       }
 
       // Send Request using POST method
-      final dynamic response = await AppApi().sendRequest.post(url, data: formData);
+      final dynamic response = await AppApi().sendRequest.post(
+        url,
+        data: formData,
+      );
 
-      if (response.statusCode >= statusCodeStart && response.statusCode <= statusCodeEnd) {
+      if (response.statusCode >= statusCodeStart &&
+          response.statusCode <= statusCodeEnd) {
         return response.data;
       } else {
         return null;
@@ -268,5 +326,4 @@ class ApiServices {
       return null;
     }
   }
-
 }
