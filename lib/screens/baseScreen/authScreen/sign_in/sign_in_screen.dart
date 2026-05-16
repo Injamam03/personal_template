@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:personal_template/constant/app_assert_image.dart';
 import 'package:personal_template/widgets/custom_text/custom_text.dart';
 import 'package:personal_template/widgets/custom_text_Field/custom_text_Field.dart';
 import 'package:personal_template/widgets/custombutton/custombutton.dart';
@@ -23,15 +22,16 @@ class SignInScreen extends StatelessWidget {
     );
 
     return Scaffold(
+      backgroundColor: ConstColor.appColor,
       body: Stack(
         children: [
           /// Background Image
-          Positioned.fill(
-            child: Image.asset(
-              ConstAssertImage.backgroundImg,
-              fit: BoxFit.cover,
-            ),
-          ),
+          // Positioned.fill(
+          //   child: Image.asset(
+          //     ConstAssertImage.backgroundImg,
+          //     fit: BoxFit.cover,
+          //   ),
+          // ),
 
           /// Content
           SizedBox(

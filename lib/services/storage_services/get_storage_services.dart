@@ -50,6 +50,11 @@ class StorageServices {
     }
   }
 
+
+
+
+
+
   /////////////////////  user role
   Future<void> setUserRole(String value) async {
     try {
@@ -58,6 +63,12 @@ class StorageServices {
       errorLog("set user role", e);
     }
   }
+                                     
+
+
+
+
+
 
   String? getUserRole() {
     try {
